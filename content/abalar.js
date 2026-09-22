@@ -1,10 +1,78 @@
 (function () {
 	"use strict";
 
-	var browser = window.browser || window.chrome || {};
-
 	if (document.getElementById("abalar-busca-panel")) {
 		return;
+	}
+
+	function apiExtension() {
+		var candidatos = [];
+		if (typeof globalThis !== "undefined") {
+			candidatos.push(globalThis.browser, globalThis.chrome);
+		}
+		if (typeof window !== "undefined") {
+			candidatos.push(window.browser, window.chrome);
+		}
+		for (var i = 0; i < candidatos.length; i++) {
+			var c = candidatos[i];
+			if (c && c.storage && c.storage.local) return c;
+		}
+		return null;
+	}
+
+	var EXT = apiExtension();
+
+	if (!EXT) {
+		console.warn(
+			"[abalar] storage.local non dispoñible; a caché será temporal (só nesta páxina)"
+		);
+	}
+
+	var memoriaCache = {};
+
+	function storageGet(chaves) {
+		if (EXT) {
+			try {
+				var pr = EXT.storage.local.get(chaves);
+				if (pr && typeof pr.then === "function") return pr;
+			} catch (e) {}
+			return new Promise(function (resolve) {
+				EXT.storage.local.get(chaves, function (res) {
+					resolve(res || {});
+				});
+			});
+		}
+		var res = {};
+		chaves.forEach(function (k) {
+			if (k in memoriaCache) res[k] = memoriaCache[k];
+		});
+		return Promise.resolve(res);
+	}
+
+	function storageSet(obxecto) {
+		if (EXT) {
+			try {
+				var pr = EXT.storage.local.set(obxecto);
+				if (pr && typeof pr.then === "function") return pr;
+			} catch (e) {}
+			return new Promise(function (resolve, reject) {
+				EXT.storage.local.set(obxecto, function () {
+					if (
+						typeof chrome !== "undefined" &&
+						chrome.runtime &&
+						chrome.runtime.lastError
+					) {
+						reject(new Error(chrome.runtime.lastError.message));
+					} else {
+						resolve();
+					}
+				});
+			});
+		}
+		Object.keys(obxecto).forEach(function (k) {
+			memoriaCache[k] = obxecto[k];
+		});
+		return Promise.resolve();
 	}
 
 	var BASE_STORAGE_LISTA = "abalarBuscaMensaxes";
@@ -155,7 +223,7 @@
 	}
 
 	function obtenerCache() {
-		return browser.storage.local.get([STORAGE_LISTA, STORAGE_META]).then(function (res) {
+		return storageGet([STORAGE_LISTA, STORAGE_META]).then(function (res) {
 			return {
 				mensaxes: Array.isArray(res[STORAGE_LISTA]) ? res[STORAGE_LISTA] : [],
 				meta: res[STORAGE_META] || {}
@@ -167,7 +235,7 @@
 		var obxecto = {};
 		obxecto[STORAGE_LISTA] = mensaxes;
 		obxecto[STORAGE_META] = meta;
-		return browser.storage.local.set(obxecto);
+		return storageSet(obxecto);
 	}
 
 	function mergeMensaxes(existentes, novos) {
@@ -457,7 +525,7 @@
 			var obxectoLimpo = {};
 			obxectoLimpo[STORAGE_LISTA] = [];
 			obxectoLimpo[STORAGE_META] = {};
-			browser.storage.local.set(obxectoLimpo).then(function () {
+			storageSet(obxectoLimpo).then(function () {
 				mensaxesGlobais = [];
 				metaGlobais = { totalPages: 1, dataCache: null };
 				actualizarEstado("Cache baleira.");

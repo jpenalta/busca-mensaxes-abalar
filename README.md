@@ -29,13 +29,13 @@ A **caché está illada por usuario de Abalar**: asóciase ao nome que aparece n
 
 ### Firefox (versión asinada por Mozilla)
 
-Descarga o ficheiro asinado desde a [última release](https://github.com/jpenalta/busca-mensaxes-abalar/releases/latest) (`abalar-asinado-v1.0.2.xpi`) e:
+Descarga o ficheiro asinado desde a [última release](https://github.com/jpenalta/busca-mensaxes-abalar/releases/latest) (`abalar-asinado-v1.0.3.xpi`) e:
 
 1. Abre `about:addons` en Firefox.
 2. ⚙ (engrenaxe) → **Instalar complemento desde arquivo…**.
 3. Selecciona o `.xpi` descargado → **Engadir**.
 
-> A versión asinada está "unlisted" (non lista en addons.mozilla.org). O ficheiro asinado tamén está dispoñible en `dist/abalar-asinado-v1.0.2.xpi` deste repo.
+> A versión asinada está "unlisted" (non lista en addons.mozilla.org). O ficheiro asinado tamén está dispoñible en `dist/abalar-asinado-v1.0.3.xpi` deste repo.
 
 **Como alternativa de desenvolvemento** (sen recorrer ao asinamento de AMO):
 - **Temporal**: `about:debugging` → *Cargar complemento temporal* → selecciona `manifest.json` (pérdese ao reiniciar).
@@ -43,7 +43,7 @@ Descarga o ficheiro asinado desde a [última release](https://github.com/jpenalt
 
 ### Chrome
 
-1. Descarga `abalar-chrome-v1.0.2.zip` desde a [última release](https://github.com/jpenalta/busca-mensaxes-abalar/releases/latest) e **descomprimílo** nua carpeta.
+1. Descarga `abalar-chrome-v1.0.3.zip` desde a [última release](https://github.com/jpenalta/busca-mensaxes-abalar/releases/latest) e **descomprimílo** nua carpeta.
 2. Abre `chrome://extensions`.
 3. Activa o **Modo de desenvolvedor** (interruptor arriba á dereita).
 4. Preme **Cargar descomprimida** e selecciona a carpeta descomprimida.
