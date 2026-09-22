@@ -25,7 +25,7 @@ A extensión **non recolle nin transmite ningún dato fóra do teu navegador** (
 
 ### Firefox (versión asinada por Mozilla)
 
-Descarga o ficheiro asinado desde a [última release](https://github.com/jpenrod/busca-mensaxes-abalar/releases/latest) (`abalar-asinado-v1.0.1.xpi`) e:
+Descarga o ficheiro asinado desde a [última release](https://github.com/jpenalta/busca-mensaxes-abalar/releases/latest) (`abalar-asinado-v1.0.1.xpi`) e:
 
 1. Abre `about:addons` en Firefox.
 2. ⚙ (engrenaxe) → **Instalar complemento desde arquivo…**.
@@ -39,7 +39,7 @@ Descarga o ficheiro asinado desde a [última release](https://github.com/jpenrod
 
 ### Chrome
 
-1. Descarga `abalar-chrome-v1.0.1.zip` desde a [última release](https://github.com/jpenrod/busca-mensaxes-abalar/releases/latest) e **descomprimílo** nua carpeta.
+1. Descarga `abalar-chrome-v1.0.1.zip` desde a [última release](https://github.com/jpenalta/busca-mensaxes-abalar/releases/latest) e **descomprimílo** nua carpeta.
 2. Abre `chrome://extensions`.
 3. Activa o **Modo de desenvolvedor** (interruptor arriba á dereita).
 4. Preme **Cargar descomprimida** e selecciona a carpeta descomprimida.
