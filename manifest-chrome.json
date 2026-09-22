@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "Busca mensaxes Abalar",
+  "version": "1.0.1",
+  "description": "Cachea todas as páxinas da listaxe de mensaxes de Abalar e permite buscar as mensaxes por nome de alumno/a (total ou parcial).",
+  "permissions": ["storage"],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.edu.xunta.gal/abalar/ListarMensaxesBandexa.do*",
+        "*://*/abalar/ListarMensaxesBandexa.do*"
+      ],
+      "js": ["content/abalar.js"],
+      "css": ["content/abalar.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}
