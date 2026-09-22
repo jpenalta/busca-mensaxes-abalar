@@ -1,6 +1,9 @@
 # Artefactos xerados (viven en GitHub Releases)
 dist/
 
+# Páxinas de exemplo reais (con datos persoais) — non publicar
+exemplo/
+
 # Sistema
 .DS_Store
 Thumbs.db

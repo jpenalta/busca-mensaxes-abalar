@@ -21,17 +21,21 @@ Inxéctase un panel flotante na páxina `ListarMensaxesBandexa.do`:
 
 A extensión **non recolle nin transmite ningún dato fóra do teu navegador** (declarado como `required: ["none"]` nas permisos de recollida de datos de Firefox); toda a información queda no almacenamento local do perfil.
 
+A **caché está illada por usuario de Abalar**: asóciase ao nome que aparece na cabeceira da aplicación (`#cabeceiraNomeUsuario`). Se dous usuarios usan o mesmo perfil do navegador, cada un ve e busca só as súas mensaxes; as cachés conviven sen mesturarse.
+
+> ⚠️ **Ordenador compartido**: se a extensión se utiliza nun ordenador compartido por varios usuarios de Abalar, é **boa práctica limpar a caché do complemento cando se remata** (botón *Limpar* no panel). Ao estares gardada localmente no perfil do navegador, outro usuario dese mesmo perfil non a verá grazas ao illamento por usuario, pero a limpeza evita deixar datos sensibles no disco.
+
 ## Instalación
 
 ### Firefox (versión asinada por Mozilla)
 
-Descarga o ficheiro asinado desde a [última release](https://github.com/jpenalta/busca-mensaxes-abalar/releases/latest) (`abalar-asinado-v1.0.1.xpi`) e:
+Descarga o ficheiro asinado desde a [última release](https://github.com/jpenalta/busca-mensaxes-abalar/releases/latest) (`abalar-asinado-v1.0.2.xpi`) e:
 
 1. Abre `about:addons` en Firefox.
 2. ⚙ (engrenaxe) → **Instalar complemento desde arquivo…**.
 3. Selecciona o `.xpi` descargado → **Engadir**.
 
-> A versión asinada está "unlisted" (non lista en addons.mozilla.org). O ficheiro asinado tamén está dispoñible en `dist/abalar-asinado-v1.0.1.xpi` deste repo.
+> A versión asinada está "unlisted" (non lista en addons.mozilla.org). O ficheiro asinado tamén está dispoñible en `dist/abalar-asinado-v1.0.2.xpi` deste repo.
 
 **Como alternativa de desenvolvemento** (sen recorrer ao asinamento de AMO):
 - **Temporal**: `about:debugging` → *Cargar complemento temporal* → selecciona `manifest.json` (pérdese ao reiniciar).
@@ -39,7 +43,7 @@ Descarga o ficheiro asinado desde a [última release](https://github.com/jpenalt
 
 ### Chrome
 
-1. Descarga `abalar-chrome-v1.0.1.zip` desde a [última release](https://github.com/jpenalta/busca-mensaxes-abalar/releases/latest) e **descomprimílo** nua carpeta.
+1. Descarga `abalar-chrome-v1.0.2.zip` desde a [última release](https://github.com/jpenalta/busca-mensaxes-abalar/releases/latest) e **descomprimílo** nua carpeta.
 2. Abre `chrome://extensions`.
 3. Activa o **Modo de desenvolvedor** (interruptor arriba á dereita).
 4. Preme **Cargar descomprimida** e selecciona a carpeta descomprimida.

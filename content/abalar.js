@@ -7,8 +7,12 @@
 		return;
 	}
 
-	var STORAGE_LISTA = "abalarBuscaMensaxes";
-	var STORAGE_META = "abalarBuscaMeta";
+	var BASE_STORAGE_LISTA = "abalarBuscaMensaxes";
+	var BASE_STORAGE_META = "abalarBuscaMeta";
+
+	var USUARIO = usuarioActual();
+	var STORAGE_LISTA = BASE_STORAGE_LISTA + ":" + USUARIO.id;
+	var STORAGE_META = BASE_STORAGE_META + ":" + USUARIO.id;
 
 	var mensaxesGlobais = [];
 	var metaGlobais = { totalPages: 1, dataCache: null };
@@ -19,6 +23,15 @@
 
 	function normalizar(s) {
 		return limpar(s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+	}
+
+	function usuarioActual() {
+		var el = document.getElementById("cabeceiraNomeUsuario");
+		var nome = el ? limpar(el.textContent) : "";
+		return {
+			nome: nome,
+			id: nome ? normalizar(nome) : "sen-usuario"
+		};
 	}
 
 	function esc(s) {
@@ -458,6 +471,10 @@
 		UI.estado.classList.toggle("abp-erro", !!erro);
 	}
 
+	function conUsuario(texto) {
+		return (USUARIO.nome ? "Usuario: " + USUARIO.nome + " — " : "") + (texto || "");
+	}
+
 	function amosarPulso(visibel, fraccion) {
 		UI.pulso.classList.toggle("abp-visible", !!visibel);
 		if (visibel) {
@@ -543,8 +560,10 @@
 			})
 			.then(function () {
 				actualizarEstado(
-					"Cache actualizada: " + mensaxesGlobais.length + " mensaxes en " +
-					metaGlobais.totalPages + " páxinas."
+					conUsuario(
+						"Cache actualizada: " + mensaxesGlobais.length + " mensaxes en " +
+						metaGlobais.totalPages + " páxinas."
+					)
 				);
 				renderResultados(UI.input.value);
 			})
@@ -574,7 +593,7 @@
 					? " · última actualización: " + formatarDataCache(metaGlobais.dataCache)
 					: " · aínda sen actualizar (pulsa Cachear páxinas)";
 				actualizarEstado(
-					mensaxesGlobais.length + " mensaxes en cache" + datos
+					conUsuario(mensaxesGlobais.length + " mensaxes en cache" + datos)
 				);
 				renderResultados("");
 			})
